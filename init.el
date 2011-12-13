@@ -32,3 +32,8 @@
 ;; Pull in personalised config
 (load-dotfile "config/core.el")
 
+;; Load init.d files
+(setq init-dir (concat dotfiles-dir "init.d"))
+(when (file-exists-p init-dir)
+    (add-to-list 'load-path init-dir)
+    (mapc #'load (directory-files init-dir nil "^[^.].*el$")))
